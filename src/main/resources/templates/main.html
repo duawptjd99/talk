@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="kr">
+<link href="/bootstrap-4.6.2-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Talk</title>
+</head>
+<body>
+<div class="container-fluid" style="padding: 0;">
+    <div class="row no-gutters">
+        <div class="col-md-12 bg-primary" style="height: 5vh;">
+            <label class="col-md-10">Chat</label>
+            <label th:text="${session.get('email')}+'님'"></label>
+            <button class="btn btn-primary" id="logout-button">Logout</button>
+        </div>
+    </div>
+    <div class="row no-gutters" style="height: 95vh;">
+        <div class="col-md-3 bg-secondary">
+            <!-- Left Area -->
+            <div class="d-block" style="background: #0f6674; height: 5vh; ">
+                <label class="col-form-label">Talk</label>
+                <div style="float:right;">
+                    <button class="btn btn-primary flex-fill">sear</button>
+                    <button class="btn btn-primary flex-fill">new</button>
+                    <button class="btn btn-primary flex-fill">set</button>
+                </div>
+            </div>
+            <div style="height: 85vh; overflow-y: auto;">
+                <!-- friends of chat list... -->
+            </div>
+            <div class="d-flex justify-content-between" style="background: #7abaff; height: 5vh;">
+                <button class="btn btn-primary flex-fill">fri</button>
+                <button class="btn btn-primary flex-fill">chat</button>
+                <button class="btn btn-primary flex-fill">more</button>
+            </div>
+        </div>
+        <div class="col-md-9" style="height: 95vh;">
+            <div class="mb-1" style="background: #5a6268; height: 90vh; overflow-y: auto;">
+                <!-- Chatting Area -->
+                <ul>
+                    <!-- 백엔드에서 전달받은 리스트를 순회하며 각 요소에 대한 내용을 추가 -->
+                    <li th:each="line : ${lineList}">
+                        <span th:text="${item.getLine()}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div style="height: 5vh;">
+                <!-- Input Area -->
+                <!-- Input Area -->
+                <div class="input-group mb-3 ">
+                    <form class="row col-md-12" id="send-form">
+                        <div class="input-group-append col-md-1">
+                            <button class="btn btn-inline-secondary col" id="button-addon1" type="button">+</button>
+                        </div>
+                        <input aria-describedby="button-addon2"
+                               aria-label="Recipient's username" class="form-control col-md-10"
+                               name="content"
+                               placeholder="send message..."
+                               type="text">
+                        <div class="input-group-append col-md-1">
+                            <button class="btn btn-outline-secondary" id="send-button" type="button">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/home.js"></script>
+<script>new home();</script>
+</body>
+</html>
